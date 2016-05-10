@@ -1,7 +1,9 @@
 package main.java;
 
 import java.util.ArrayList;
+import controlP5.*;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -18,26 +20,34 @@ public class MainApplet extends PApplet
 	JSONArray nodes, links;
 	private ArrayList<Character> characters;
 	private ArrayList<Network> networks;
+	private ControlP5 cp5;
 	
 	private final static int width = 1200, height = 650;
 	
 	public void setup() 
 	{
-
 		size(width, height);
 		smooth();
 		characters = new ArrayList<Character>();
 		networks = new ArrayList<Network>();
+		cp5 = new ControlP5(this);
+		PFont p = createFont("Georgia", 20); 
+		cp5.setFont(p);
+		cp5.addButton("add all").setLabel("ADD ALL").setPosition(950, 70).setSize(200, 50).setColorBackground(color(173, 204, 180)).setColorForeground(color(185, 228, 199));
+		cp5.addButton("clear").setLabel("CLEAR").setPosition(950, 170).setSize(200, 50).setColorBackground(color(173, 204, 180)).setColorForeground(color(185, 228, 199));
 		loadData();
-		
 	}
 
 	public void draw() 
 	{
-		fill(0);
+		fill(120, 94, 84);
 		background(255);
 		textSize(26); 
-		text("Star Wars " + file.substring(17, 18), 520, 30);
+		text("Star Wars " + file.substring(17, 18), 530, 30);
+		fill(255);
+		stroke(213, 220, 185);
+		strokeWeight(4);
+		ellipse(600, 320, 500, 500);
 		for(Character character : characters) character.display();
 		for(Character character : characters) character.displayName();
 		for(Network network : networks) network.display();
