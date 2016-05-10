@@ -10,7 +10,8 @@ import javax.swing.JFrame;
 * @since   2016-04-26 
 */
 @SuppressWarnings("serial")
-public class Main extends JFrame{
+public class Main extends JFrame
+{
 	
 	private final static int windowWidth = 1200, windowHeight = 670;
 	

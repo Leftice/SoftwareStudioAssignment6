@@ -8,17 +8,20 @@ import processing.core.PApplet;
 * I used the class to draw the circle and re-arrange nodes and links.
 * You will need to declare other variables.
 */
-public class Network {
+public class Network 
+{
 	
 	private PApplet parent;
 
-	public Network(PApplet parent){
+	public Network(PApplet parent)
+	{
 
 		this.parent = parent;
 		
 	}
 
-	public void display(){
+	public void display()
+	{
 		
 	}
 	
