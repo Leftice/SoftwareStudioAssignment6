@@ -34,9 +34,14 @@ public class MainApplet extends PApplet
 
 	public void draw() 
 	{
+		fill(0);
 		background(255);
+		textSize(26); 
+		text("Star Wars " + file.substring(17, 18), 520, 30);
 		for(Character character : characters) character.display();
+		for(Character character : characters) character.displayName();
 		for(Network network : networks) network.display();
+		
 	}
 
 	private void loadData()
