@@ -13,7 +13,7 @@ public class Character
 	public String name;
 	private int color;
 	public float x, y, r, sx, sy;
-	private boolean isMove = false;
+	private boolean isMove = false, isIn = false;
 	
 	public Character(MainApplet parent, String name, int color, int x, int y)
 	{
@@ -67,8 +67,18 @@ public class Character
 		}
 		else
 		{
-			Ani.to(this, (float)0.7, "x", sx);
-			Ani.to(this, (float)0.7, "y", sy);
+			if(Math.pow(x-560, 2)+ Math.pow(y-280, 2) < Math.pow(250, 2))
+			{
+				isIn = true;
+				adjustCircle();
+			}
+			else
+			{
+				isIn = false;
+				adjustCircle();
+				Ani.to(this, (float)0.7, "x", sx);
+				Ani.to(this, (float)0.7, "y", sy);
+			}
 			isMove = false;
 		}
 	}
@@ -81,5 +91,23 @@ public class Character
 		this.parent.fill(255);
 		this.parent.textSize(18);
 		this.parent.text(name, x+45, y+47);
+	}
+	
+	public void adjustCircle()
+	{
+		int num = 0, i = 0;
+		double angle;
+		for(Character character : this.parent.characters) if(character.isIn) num++;
+		for(Character character : this.parent.characters)
+		{
+			if(character.isIn)
+			{
+				angle = 360/num * i;
+				angle = Math.toRadians(angle);
+				i++;
+				character.x = (float) (560 + 250 * Math.cos(angle));
+				character.y = (float) (280 - 250 * Math.sin(angle));
+			}
+		}
 	}
 }
