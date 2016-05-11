@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 import de.looksgood.ani.Ani;
 
 /**
@@ -11,9 +13,10 @@ public class Character
 	
 	private MainApplet parent;
 	public String name;
-	private int color;
+	public int color;
 	public float x, y, r, sx, sy;
 	public boolean isMove = false, isIn = false;
+	private ArrayList<Character> targets;
 	
 	public Character(MainApplet parent, String name, int color, int x, int y)
 	{
@@ -25,6 +28,7 @@ public class Character
 		this.r = 30;
 		this.sx = x;
 		this.sy = y;
+		targets = new ArrayList<Character>();
 		Ani.init(this.parent);
 	}
 
@@ -32,7 +36,7 @@ public class Character
 	{
 		this.parent.fill(color);
 		this.parent.stroke(color);
-		this.parent.ellipse(x+40, y+40, r, r);
+		this.parent.ellipse(x+40, y+40, r, r);		
 	}
 	
 	public void mouseEvent()
@@ -111,7 +115,12 @@ public class Character
 				i++;
 				character.x = (float) (560 + 250 * Math.cos(angle));
 				character.y = (float) (280 - 250 * Math.sin(angle));
+				
 			}
 		}
+	}
+
+	public void addTarget(Character target){
+		targets.add(target);
 	}
 }

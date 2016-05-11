@@ -19,7 +19,7 @@ public class MainApplet extends PApplet
 	JSONObject data;
 	JSONArray nodes, links;
 	public ArrayList<Character> characters;
-	private ArrayList<Network> networks;
+	public ArrayList<Network> networks;
 	private ControlP5 cp5;
 	
 	private final static int width = 1200, height = 650;
@@ -70,6 +70,12 @@ public class MainApplet extends PApplet
 		for(i=0; i<links.size(); i++)
 		{
 			data = links.getJSONObject(i);
+			JSONObject json1;
+			json1 = links.getJSONObject(i);
+			int s = json1.getInt("source");
+			int d = json1.getInt("target");
+			int v = json1.getInt("value");
+			this.networks.add(new Network(this, s, d, v));
 		}
 	}
 	
@@ -82,7 +88,9 @@ public class MainApplet extends PApplet
 		else if(keyCode==0x35) file = "starwars-episode-5-interactions.json";
 		else if(keyCode==0x36) file = "starwars-episode-6-interactions.json";
 		else if(keyCode==0x37) file = "starwars-episode-7-interactions.json";
+		else return;
 		characters.clear();
+		networks.clear();
 		loadData();
 	}
 	
