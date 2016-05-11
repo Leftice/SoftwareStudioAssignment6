@@ -13,7 +13,7 @@ public class Character
 	public String name;
 	private int color;
 	public float x, y, r, sx, sy;
-	private boolean isMove = false, isIn = false;
+	public boolean isMove = false, isIn = false;
 	
 	public Character(MainApplet parent, String name, int color, int x, int y)
 	{
@@ -47,8 +47,8 @@ public class Character
 		{
 			if(this.parent.mouseX > x+25 && this.parent.mouseX < x+55 && this.parent.mouseY > y+25 && this.parent.mouseY < y+55)
 			{
-				showName();
 				if(this.parent.mousePressed) isMove = true;
+				if(!isMove) showName();
 				r=35;
 			}
 			else r=30;
@@ -76,11 +76,16 @@ public class Character
 			{
 				isIn = false;
 				adjustCircle();
-				Ani.to(this, (float)0.7, "x", sx);
-				Ani.to(this, (float)0.7, "y", sy);
+				moveBack();
 			}
 			isMove = false;
 		}
+	}
+	
+	public void moveBack()
+	{
+		Ani.to(this, (float)0.7, "x", sx);
+		Ani.to(this, (float)0.7, "y", sy);
 	}
 	
 	public void showName()
@@ -95,8 +100,7 @@ public class Character
 	
 	public void adjustCircle()
 	{
-		int num = 0, i = 0;
-		double angle;
+		double num = 0, i = 0, angle;
 		for(Character character : this.parent.characters) if(character.isIn) num++;
 		for(Character character : this.parent.characters)
 		{

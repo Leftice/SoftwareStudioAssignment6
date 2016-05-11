@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.ArrayList;
 import controlP5.*;
+import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.data.JSONArray;
@@ -33,7 +34,7 @@ public class MainApplet extends PApplet
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Georgia", 20); 
 		cp5.setFont(p);
-		cp5.addButton("add all").setLabel("ADD ALL").setPosition(950, 70).setSize(200, 50).setColorBackground(color(173, 204, 180)).setColorForeground(color(185, 228, 199));
+		cp5.addButton("add").setLabel("ADD ALL").setPosition(950, 70).setSize(200, 50).setColorBackground(color(173, 204, 180)).setColorForeground(color(185, 228, 199));
 		cp5.addButton("clear").setLabel("CLEAR").setPosition(950, 170).setSize(200, 50).setColorBackground(color(173, 204, 180)).setColorForeground(color(185, 228, 199));
 		loadData();
 	}
@@ -84,5 +85,20 @@ public class MainApplet extends PApplet
 		else if(keyCode==0x37) file = "starwars-episode-7-interactions.json";
 		characters.clear();
 		loadData();
+	}
+	
+	public void add()
+	{
+		for(Character character : characters) character.isIn = true;
+		characters.get(0).adjustCircle();
+	}
+	
+	public void clear()
+	{
+		for(Character character : characters)
+		{
+			character.isIn = false;
+			character.moveBack();
+		}
 	}
 }
