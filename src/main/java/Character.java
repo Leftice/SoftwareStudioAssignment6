@@ -35,39 +35,35 @@ public class Character
 		this.parent.ellipse(x+40, y+40, r, r);
 	}
 	
-	public void displayName()
+	public void mouseEvent()
 	{
-		if(this.parent.mouseX > x+25 && this.parent.mouseX < x+55 && this.parent.mouseY > y+25 && this.parent.mouseY < y+55)
+		int i=0;
+		for(Character character : this.parent.characters)
 		{
-			this.parent.fill(171, 202, 176);
-			this.parent.stroke(171, 202, 176);
-			this.parent.rect(x+40, y+25, name.length()*15, 30, 10);
-			this.parent.fill(255);
-			this.parent.textSize(18);
-			this.parent.text(name, x+45, y+47);
-			if(this.parent.mousePressed)
-			{
-				isMove = true;
-				for(Character character : this.parent.characters) if(character.isMove && !character.equals(this)) isMove = false;
-			}
-			r=35;
+			if(character.isMove && !character.equals(this)) break;
+			i++;
 		}
-		else r=30;
+		if(i==this.parent.characters.size())
+		{
+			if(this.parent.mouseX > x+25 && this.parent.mouseX < x+55 && this.parent.mouseY > y+25 && this.parent.mouseY < y+55)
+			{
+				showName();
+				if(this.parent.mousePressed) isMove = true;
+				r=35;
+			}
+			else r=30;
+		}
 		if(isMove) move();
 	}
 	
 	public void move()
 	{
+		display();
 		if(this.parent.mousePressed)
 		{
-			Ani.to(this, (float)0, "x", this.parent.mouseX-40);
-			Ani.to(this, (float)0, "y", this.parent.mouseY-40);
-			this.parent.fill(171, 202, 176);
-			this.parent.stroke(171, 202, 176);
-			this.parent.rect(x+40, y+25, name.length()*15, 30, 10);
-			this.parent.fill(255);
-			this.parent.textSize(18);
-			this.parent.text(name, x+45, y+47);
+			x = this.parent.mouseX-40;
+			y = this.parent.mouseY-40;
+			showName();
 		}
 		else
 		{
@@ -75,5 +71,15 @@ public class Character
 			Ani.to(this, (float)0.7, "y", sy);
 			isMove = false;
 		}
+	}
+	
+	public void showName()
+	{
+		this.parent.fill(171, 202, 176);
+		this.parent.stroke(171, 202, 176);
+		this.parent.rect(x+40, y+25, name.length()*15, 30, 10);
+		this.parent.fill(255);
+		this.parent.textSize(18);
+		this.parent.text(name, x+45, y+47);
 	}
 }

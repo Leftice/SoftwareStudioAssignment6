@@ -49,7 +49,7 @@ public class MainApplet extends PApplet
 		strokeWeight(4);
 		ellipse(600, 320, 500, 500);
 		for(Character character : characters) character.display();
-		for(Character character : characters) character.displayName();
+		for(Character character : characters) character.mouseEvent();
 		for(Network network : networks) network.display();
 		
 	}
@@ -82,6 +82,7 @@ public class MainApplet extends PApplet
 		else if(keyCode==0x35) file = "starwars-episode-5-interactions.json";
 		else if(keyCode==0x36) file = "starwars-episode-6-interactions.json";
 		else if(keyCode==0x37) file = "starwars-episode-7-interactions.json";
+		characters.clear();
 		loadData();
 	}
 }
