@@ -1,8 +1,5 @@
 package main.java;
 
-
-import processing.core.PApplet;
-
 /**
 * This class is used to store states of the characters in the program.
 * You will need to declare other variables depending on your implementation.
@@ -37,10 +34,10 @@ public class Character
 		{
 			this.parent.fill(171, 202, 176);
 			this.parent.stroke(171, 202, 176);
-			this.parent.rect(x+40, y+20, name.length()*15, 30, 10);
+			this.parent.rect(x+40, y+25, name.length()*15, 30, 10);
 			this.parent.fill(255);
 			this.parent.textSize(18);
-			this.parent.text(name, x+45, y+40);
+			this.parent.text(name, x+45, y+47);
 		}
 	}
 	

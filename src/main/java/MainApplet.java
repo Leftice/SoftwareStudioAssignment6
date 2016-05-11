@@ -70,9 +70,18 @@ public class MainApplet extends PApplet
 		for(i=0; i<links.size(); i++)
 		{
 			data = links.getJSONObject(i);
-			int source = data.getInt("source");
-			int target = data.getInt("target");
 		}
 	}
-
+	
+	public void keyPressed()
+	{
+		if(keyCode==0x31) file = "starwars-episode-1-interactions.json";
+		else if(keyCode==0x32) file = "starwars-episode-2-interactions.json";
+		else if(keyCode==0x33) file = "starwars-episode-3-interactions.json";
+		else if(keyCode==0x34) file = "starwars-episode-4-interactions.json";
+		else if(keyCode==0x35) file = "starwars-episode-5-interactions.json";
+		else if(keyCode==0x36) file = "starwars-episode-6-interactions.json";
+		else if(keyCode==0x37) file = "starwars-episode-7-interactions.json";
+		loadData();
+	}
 }
