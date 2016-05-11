@@ -2,7 +2,6 @@ package main.java;
 
 import java.util.ArrayList;
 import controlP5.*;
-import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.data.JSONArray;
