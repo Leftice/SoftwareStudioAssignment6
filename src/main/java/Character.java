@@ -10,7 +10,7 @@ public class Character
 	private MainApplet parent;
 	public String name;
 	private int color;
-	public float x, y;
+	public float x, y, r;
 	
 	public Character(MainApplet parent, String name, int color, int x, int y)
 	{
@@ -19,13 +19,14 @@ public class Character
 		this.color = color;
 		this.x = x;
 		this.y = y;
+		this.r = 30;
 	}
 
 	public void display()
 	{
 		this.parent.fill(color);
 		this.parent.stroke(color);
-		this.parent.ellipse(x+40, y+40, 30, 30);
+		this.parent.ellipse(x+40, y+40, r, r);
 	}
 	
 	public void displayName()
@@ -38,7 +39,9 @@ public class Character
 			this.parent.fill(255);
 			this.parent.textSize(18);
 			this.parent.text(name, x+45, y+47);
+			r=35;
 		}
+		else r=30;
 	}
 	
 }
