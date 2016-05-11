@@ -18,7 +18,7 @@ public class MainApplet extends PApplet
 	private String file = "starwars-episode-1-interactions.json";
 	JSONObject data;
 	JSONArray nodes, links;
-	private ArrayList<Character> characters;
+	public ArrayList<Character> characters;
 	private ArrayList<Network> networks;
 	private ControlP5 cp5;
 	
